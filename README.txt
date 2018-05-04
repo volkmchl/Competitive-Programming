@@ -1,1 +1,1 @@
-Competitive Programming
+A set of competitive programming problems I have solved on multiple online judges such as UVa Online Judge, SPOJ, Kattis, and Codeforces. Please keep in mind that the solutions to most competitive programming problems are not supposed to be examples of clean code.
