@@ -2,7 +2,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.StringTokenizer;
 
@@ -11,42 +10,58 @@ import java.util.StringTokenizer;
 public class stringgame {
 
 	public static void main(String[] args){
+
 		FastScanner sc = new FastScanner();
-		String t = sc.next();
-		String p = sc.next();
-
-		int ind[] = new int[t.length()];
-		int time[] = new int[t.length()];
-
-		for(int i = 0;i<t.length();i++){
-			ind[i] = sc.nextInt()-1;
-			time[ind[i]] = i;
+		
+		String initial = sc.next();
+		String goal = sc.next();
+		int[] ind = new int[initial.length()];
+		
+		for(int i = 0; i < initial.length(); i++){
+			ind[i] = sc.nextInt();
 		}
 
 		int l = 0;
-		int h = t.length()-p.length();
-
+		int h = initial.length()-goal.length();
 
 
 		int max = 0;
 		while(l <= h){
+
+			//try removing mid characters
 			int mid = (l+h)/2;
 
-			int pI = 0;
-			for(int i = 0; i < t.length(); i++){
-				
-				if(time[i] >= mid && t.charAt(i) == p.charAt(pI)){
-					pI++;
-				}
-				if(pI == p.length()) break;
-
+			//store all the indices that we will remove for this attempt at finding a solution
+			HashSet<Integer> rem = new HashSet<Integer>();
+			for(int i = 0 ; i < mid; i++){
+				rem.add(ind[i]-1);
 			}
 
+			//number of letters we have so far
+			int charCount = 0;
 
-			if(pI == p.length()){
-				max = mid;
+			//going through all the letters in the initial word
+			for(int i = 0; i < initial.length(); i++){
+
+				//if we are at an index that was not removed
+				if(!rem.contains(i)){
+
+					if(initial.charAt(i) == goal.charAt(charCount)){
+						charCount++;
+					}
+
+					if(charCount == goal.length()) break;
+				}
+			}
+
+			//if the max number of letters we chose resulted in having all the letters
+			//in the goal word, we might be able to remove more letters
+			//update max and the low bound
+			if(charCount == goal.length()){
+				max = mid;			
 				l = mid+1;
 			}
+			//otherwise, update the high bound to whatever max we attempted last -1
 			else{
 				h = mid-1;
 			}
