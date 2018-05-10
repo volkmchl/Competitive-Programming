@@ -24,14 +24,14 @@ public class egggrop {
 
             switch(outcome.charAt(0)){
                 case 'S':											//if the level was safe and the egg did not break
-                    if(level > currSafeLev) currSafeLev = level;	//then we set the currentSafeLev to the level provided in the respective drop
+                    if(level > currSafeLev) currSafeLev = level;    //then we set the currentSafeLev to the level provided in the respective drop
                     break;											//only if that level was higher than what we initially had as a currentSafeLev
                                                                     //because you want the highest safe level possible
 
                 case 'B':											//if the level was not safe and the egg broke
-                    if(level < currBreakLev) currBreakLev = level;	//the we set the currentBreakLev to the level provided in the respective drop
+                    if(level < currBreakLev) currBreakLev = level;  //the we set the currentBreakLev to the level provided in the respective drop
                     break;											//only if that level was smaller than what we initially had as a currentBreakLev
-            }													    //because you want the lowest unsafe level possible
+            }                                                       //because you want the lowest unsafe level possible
         }
 
 
