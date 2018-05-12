@@ -58,7 +58,7 @@ public class marlin{
             rightSide = (n-(++leftSide+1));
 
             //even though i'm subtracting by 2, the number of unique coordinates added on this iteration could be 1
-            //if leftSide == rightSide (at middle column), but k gets decreased by the size of the set anyway in the main method
+            //when leftSide == rightSide (at middle column), but k gets decreased by the size of the set anyway in the main method
             //so we're good
             hotels -= 2;
         }
