@@ -47,12 +47,15 @@ public class marlin{
         //guaranteed that hotels is even at this point
         int leftSide = 1;
         int rightSide = (n-(leftSide+1));
-        while(hotels > 0){
+        while(hotels > 0 && leftSide <= rightSide){
+
+            //leftSide might be equal to rightSide at middle column
+            //hence leftSide <= rightSide in while condition
             colPts.add(leftSide);
             colPts.add(rightSide);
 
-            leftSide++;
-            rightSide = (n-(leftSide+1));
+            //notice the ++leftSide
+            rightSide = (n-(++leftSide+1));
 
             hotels -= 2;
         }
